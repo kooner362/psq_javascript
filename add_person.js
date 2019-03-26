@@ -13,8 +13,12 @@ const knex = require('knex')({
     useNullAsDefault: true
   });
 
-const date = new Date();
-knex('famous_people').insert([{first_name:'test3', last_name:'test3', birthdate: date}])
+let first_name = process.argv[2];
+let last_name = process.argv[3];
+let date = new Date(process.argv[4]);
+
+
+knex('famous_people').insert([{first_name: first_name, last_name: last_name, birthdate: date}])
 .asCallback(function(err, rows) {
     if (err) return console.error(err);
     console.log(rows);
